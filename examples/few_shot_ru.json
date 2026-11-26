@@ -1,0 +1,30 @@
+[
+  {
+    "question": "Сколько всего заказов было доставлено в 2017 году?",
+    "sql": "SELECT COUNT(*) FROM orders WHERE order_status = 'delivered' AND strftime('%Y', order_purchase_timestamp) = '2017';"
+  },
+  {
+    "question": "Сколько уникальных клиентов сделали хотя бы один заказ?",
+    "sql": "SELECT COUNT(DISTINCT customer_unique_id) FROM customers;"
+  },
+  {
+    "question": "Какая средняя стоимость доставки (freight_value) для товаров из категории 'brinquedos'?",
+    "sql": "SELECT AVG(oi.freight_value) FROM order_items oi JOIN products p ON oi.product_id = p.product_id WHERE p.product_category_name = 'brinquedos';"
+  },
+  {
+    "question": "Топ-5 городов по количеству клиентов.",
+    "sql": "SELECT customer_city, COUNT(DISTINCT customer_unique_id) as customer_count FROM customers GROUP BY customer_city ORDER BY customer_count DESC LIMIT 5;"
+  },
+  {
+    "question": "Сколько заказов было оплачено способом 'credit_card' в штате SP?",
+    "sql": "SELECT COUNT(DISTINCT o.order_id) FROM orders o JOIN customers c ON o.customer_id = c.customer_id JOIN order_payments p ON o.order_id = p.order_id WHERE p.payment_type = 'credit_card' AND c.customer_state = 'SP';"
+  },
+  {
+    "question": "Сколько всего отзывов с оценкой 5?",
+    "sql": "SELECT COUNT(*) FROM order_reviews WHERE review_score = 5;"
+  },
+  {
+    "question": "Какой средний вес товаров, которые были доставлены в штат RJ?",
+    "sql": "SELECT AVG(p.product_weight_g) FROM orders o JOIN customers c ON o.customer_id = c.customer_id JOIN order_items oi ON o.order_id = oi.order_id JOIN products p ON oi.product_id = p.product_id WHERE c.customer_state = 'RJ' AND o.order_status = 'delivered';"
+  }
+]
