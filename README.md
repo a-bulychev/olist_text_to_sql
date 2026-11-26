@@ -33,8 +33,8 @@
 
 1. **Клонируйте репозиторий:**
    ```bash
-   git clone https://github.com/a-bulychev/olist-text-to-sql.git
-   cd olist-text-to-sql
+   git clone https://github.com/a-bulychev/olist_text_to_sql.git
+   cd olist_text_to_sql
    ```
 
 2. **Настройте окружение:**
